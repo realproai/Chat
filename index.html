@@ -147,10 +147,13 @@ async function fetchFile(url, name, onProg) {
     });
     $('info').textContent = '준비 중…';
     await wllama.loadModel([modelBlob], {
-      n_ctx: 10000,
+      n_ctx: 16384,
       n_threads: Math.min(4, navigator.hardwareConcurrency || 4), // 4스레드 (코어가 적으면 그만큼)
       n_gpu_layers: gpu ? 999 : 0,
-      no_kv_offload: !gpu
+      no_kv_offload: !gpu,
+      cache_type_k: 'q8_0',
+      cache_type_v: 'q8_0',
+      flash_attn: true
     });
     $('status').remove();
     $('send').disabled = false; input.focus();
