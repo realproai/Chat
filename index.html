@@ -148,7 +148,7 @@ async function fetchFile(url, name, onProg) {
     $('info').textContent = '준비 중…';
     await wllama.loadModel([modelBlob], {
       n_ctx: 20480,
-      n_threads: Math.min(6, navigator.hardwareConcurrency || 6), // 6스레드 (코어가 적으면 그만큼)
+      n_threads: Math.min(5, navigator.hardwareConcurrency || 5), // 6스레드 (코어가 적으면 그만큼)
       n_gpu_layers: gpu ? 999 : 0,
       no_kv_offload: !gpu,
       cache_type_k: 'q5_1',
