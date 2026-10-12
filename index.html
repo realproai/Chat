@@ -211,7 +211,7 @@ $('form').addEventListener('submit', async e => {
   try {
     const stream = await wllama.createChatCompletion({
       messages: history, stream: true, max_tokens: 1024,
-      temperature: 0.8, top_p: 0.8, top_k: 20,
+      temperature: 0.6, top_p: 0.8, top_k: 20,
       chat_template_kwargs: { enable_thinking: false }, 
       abortSignal: ctrl.signal
     });
