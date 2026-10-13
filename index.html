@@ -232,7 +232,7 @@ $('form').addEventListener('submit', async e => {
     } else {
       out.classList.add('err'); out.classList.remove('md');
       console.error(err);
-      out.textContent = '답변을 만들지 못했어요. 다시 시도해 주세요.';
+      out.textContent = '답변을 만들지 못했어요. 새로고침 해 주세요.';
       history.pop();
     }
   } finally {
