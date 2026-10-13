@@ -147,12 +147,12 @@ async function fetchFile(url, name, onProg) {
     });
     $('info').textContent = '준비 중…';
     await wllama.loadModel([modelBlob], {
-      n_ctx: 20480,
+      n_ctx: 30720,
       n_threads: Math.min(5, navigator.hardwareConcurrency || 5), // 5스레드 (코어가 적으면 그만큼)
       n_gpu_layers: gpu ? 999 : 0,
       no_kv_offload: !gpu,
       cache_type_k: 'q5_1',
-      cache_type_v: 'q5_1',
+      cache_type_v: 'q4_1',
       flash_attn: true
     });
     $('status').remove();
@@ -210,7 +210,7 @@ $('form').addEventListener('submit', async e => {
   $('send').hidden = true; $('stop').hidden = false;
   try {
     const stream = await wllama.createChatCompletion({
-      messages: history, stream: true, max_tokens: 1024,
+      messages: history, stream: true, max_tokens: 10240,
       temperature: 0.6, top_p: 0.8, top_k: 20,
       chat_template_kwargs: { enable_thinking: false }, 
       abortSignal: ctrl.signal
@@ -232,7 +232,7 @@ $('form').addEventListener('submit', async e => {
     } else {
       out.classList.add('err'); out.classList.remove('md');
       console.error(err);
-      out.textContent = '답변을 만들지 못했어요. 새로고침 해 주세요.';
+      out.textContent = '대화 길이가 길어서 답변을 만들지 못했어요. 새로고침 해 주세요.';
       history.pop();
     }
   } finally {
