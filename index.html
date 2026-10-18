@@ -453,7 +453,6 @@ $('delete').onclick = async () => {
     saved.set(session.refresh_token);
     await sb('/rest/v1/rpc/delete_my_account', {}, session.access_token);
     clearSession();
-    note('li-msg', ' ');
   } catch (err) {
     addMsg('bot err', err.message?.includes('ONLY_FREE') ? 'Free 계정만 삭제할 수 있어요.' : '계정을 삭제하지 못했어요. ' + errText(err));
   } finally { $('delete').disabled = false; }
