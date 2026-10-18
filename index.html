@@ -445,7 +445,7 @@ $('logout').onclick = () => {
 };
 $('delete').onclick = async () => {
   if (ctrl || !session || plan !== 'free') return;
-  if (!confirm('Free 계정을 삭제할까요? 삭제하면 되돌릴 수 없어요.')) return;
+  if (!confirm('계정을 삭제할까요? 삭제하면 되돌릴 수 없어요.')) return;
   $('delete').disabled = true;
   try {
     // 오래 켜 둬서 로그인 토큰이 만료됐을 수 있으니 새로 받아서 삭제
