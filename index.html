@@ -218,7 +218,7 @@ async function loadModel() {
     });
     $('info').textContent = '준비 중…';
     await wllama.loadModel([modelBlob], {
-      n_ctx: 30720,
+      n_ctx: 20000,
       n_threads: Math.min(N_THREADS, navigator.hardwareConcurrency || N_THREADS),
       n_gpu_layers: 0,
       no_kv_offload: true,
